@@ -14,7 +14,12 @@ function init(){
     geom.vertices.push(v3);
     geom.faces.push(face);
     
-    var triangle = new THREE.Mesh(geom);
+    geom.faces[0].vertexColors[0] = new THREE.Color(0xFF00FF);
+    geom.faces[0].vertexColors[1] = new THREE.Color(0xFF0000);
+    geom.faces[0].vertexColors[2] = new THREE.Color(0x0000FF);
+    
+    var material = new THREE.MeshBasicMaterial({vertexColors:THREE.VertexColors});
+    var triangle = new THREE.Mesh(geom, material);
     
     scene = new THREE.Scene();
     scene.add(triangle);

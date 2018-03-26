@@ -2,9 +2,9 @@ function init(){
     camera = new THREE.PerspectiveCamera(45, 1, 1, 1000);
     camera.position.z = 5;
     
-    var v1 = new THREE.Vector3(0.0, 0.5, 0);
-    var v2 = new THREE.Vector3(-0.5, -0.5, 0);
-    var v3 = new THREE.Vector3(0.5, -0.5, 0);
+    var v1 = new THREE.Vector3(0.0, 2, 0);
+    var v2 = new THREE.Vector3(-2, -2, 0);
+    var v3 = new THREE.Vector3(2, -2, 0);
 
     var face = new THREE.Face3(0, 1, 2);
     
@@ -25,7 +25,17 @@ function init(){
     scene.add(triangle);
     
     renderer = new THREE.WebGLRenderer();
-    document.body.appendChild(renderer.domElement)
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    
+    document.body.appendChild(renderer.domElement);
+    window.addEventListener('resize', onWindowResize, false);
+}
+
+function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 function main(){

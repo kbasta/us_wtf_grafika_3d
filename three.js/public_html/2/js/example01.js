@@ -1,4 +1,4 @@
-var tx = -4.5;
+var tx = -5.5;
 var speed = 0.05;
 
 function createSquare(){
@@ -38,17 +38,33 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+   
 }
 
 function animate() {
     requestAnimationFrame(animate);
-    square.position.x = tx;
-    tx += speed;
+    square.rotation.z += speed;
+    if (square.position.x >= -4 && square.position.y === -3){
+        square.position.x += speed;
+        square.material.color.setHex(0x0ff000);
+    }
+    if (square.position.x >= 3 && square.position.y >= -3){
+        square.position.y += speed;
+        square.material.color.setHex(0xff0000);
+    }
+    if ( square.position.y >= 3){
+        square.position.x -= speed;
+        square.material.color.setHex(0x0000ff);
+    }
+    if (square.position.x <= -4){
+        square.position.y -= speed;
+        square.material.color.setHex(0xffff00);
+    }   
     renderer.render(scene, camera);
-    
 }
 
 function main(){
-    requestAnimationFrame(main);
-    renderer.render(scene, camera);
+    square.position.x = -4;
+    square.position.y = -3;
+    requestAnimationFrame(animate);
 }

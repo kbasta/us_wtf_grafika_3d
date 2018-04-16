@@ -1,30 +1,25 @@
-var tx = -5.5;
-var speed = 0.05;
-
-function createSquare(){
-    var geom = new THREE.Geometry();
-    
-    geom.vertices.push(new THREE.Vector3(0.5, 0.5, 0));
-    geom.vertices.push(new THREE.Vector3(-0.5, 0.5, 0));
-    geom.vertices.push(new THREE.Vector3(-0.5, -0.5, 0));
-    geom.vertices.push(new THREE.Vector3(0.5, -0.5, 0));
-
-    geom.faces.push(new THREE.Face3(0,1,2));
-    geom.faces.push(new THREE.Face3(0,2,3));
-    
-    return geom;
-}
+// sposoby reprezentacji obiektów 3d
+var rot = 0;
 
 function init(){
     var aspect = window.innerWidth / window.innerHeight;
-    camera = new THREE.PerspectiveCamera(45, aspect, 1, 1000);
-    camera.position.z = 8;
-    
-    var material = new THREE.MeshBasicMaterial({color: 0xff0000});
-    square = new THREE.Mesh(createSquare(), material);
-    
+    camera = new THREE.PerspectiveCamera(70, aspect, 1, 10000);
+    camera.position.z = 400;
     scene = new THREE.Scene();
-    scene.add(square);
+    
+    var geometry1 = new THREE.SphereGeometry(120, 10, 10);
+    geometry1.translate(0,0,0);
+    mesh1 = new THREE.Mesh(geometry1, new THREE.MeshBasicMaterial({color: 0xffff00, wireframe: true}));
+    
+    var geometry2 = new THREE.SphereGeometry(80, 10, 10);
+    mesh2 = new THREE.Mesh(geometry2, new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true}));
+    
+    var geometry2 = new THREE.SphereGeometry(30, 10, 10);
+    mesh3 = new THREE.Mesh(geometry2, new THREE.MeshBasicMaterial({color: 0x0000ff, wireframe: true}));
+    
+    scene.add(mesh1);
+    scene.add(mesh2);
+    scene.add(mesh3);
     
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -43,28 +38,12 @@ function onWindowResize() {
 
 function animate() {
     requestAnimationFrame(animate);
-    square.rotation.z += speed;
-    if (square.position.x >= -4 && square.position.y === -3){
-        square.position.x += speed;
-        square.material.color.setHex(0x0ff000);
-    }
-    if (square.position.x >= 3 && square.position.y >= -3){
-        square.position.y += speed;
-        square.material.color.setHex(0xff0000);
-    }
-    if ( square.position.y >= 3){
-        square.position.x -= speed;
-        square.material.color.setHex(0x0000ff);
-    }
-    if (square.position.x <= -4){
-        square.position.y -= speed;
-        square.material.color.setHex(0xffff00);
-    }   
+    mesh1.rotation.y += 0.01;
+    mesh2.rotation.y -= 0.05;
+    mesh3.rotation.x += 0.2;
     renderer.render(scene, camera);
 }
 
 function main(){
-    square.position.x = -4;
-    square.position.y = -3;
     requestAnimationFrame(animate);
 }

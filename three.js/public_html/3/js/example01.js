@@ -9,15 +9,16 @@ function init(){
     
     var geometry1 = new THREE.SphereGeometry(120, 10, 10);
     geometry1.translate(0,0,250);
-    mesh1 = new THREE.Mesh(geometry1, new THREE.MeshBasicMaterial({color: 0xffff00, wireframe: true}));
+    mesh1 = new THREE.Mesh(geometry1, setTexture('earth.jpg'));
     
     var geometry2 = new THREE.SphereGeometry(80, 10, 10);
     geometry2.translate(150,0,0);
-    mesh2 = new THREE.Mesh(geometry2, new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true}));
+    mesh2 = new THREE.Mesh(geometry2, setTexture('neptune.jpg'));
    
     var geometry3 = new THREE.SphereGeometry(30, 10, 10);
     geometry3.translate(0,10,10);
-    mesh3 = new THREE.Mesh(geometry3, new THREE.MeshBasicMaterial({color: 0x0000ff, wireframe: true}));
+    mesh3 = new THREE.Mesh(geometry3, setTexture('sun.jpg'));
+    //mesh3 = new THREE.Mesh(geometry3, new THREE.MeshBasicMaterial({color: 0x0000ff, wireframe: true}));
     
     scene.add(mesh1);
     scene.add(mesh2);
@@ -35,6 +36,13 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function setTexture(path){
+    path = 'img/' + path;
+    var texture = new THREE.TextureLoader().load(path);
+    var material = new THREE.MeshBasicMaterial({map: texture});
+    return material;
 }
 
 function rotateMeshes(){

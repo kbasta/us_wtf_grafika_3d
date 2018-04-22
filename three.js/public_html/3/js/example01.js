@@ -1,5 +1,5 @@
 // sposoby reprezentacji obiektów 3d
-var rot = 0;
+var scene, camera, renderer;
 
 function init(){
     var aspect = window.innerWidth / window.innerHeight;
@@ -8,14 +8,16 @@ function init(){
     scene = new THREE.Scene();
     
     var geometry1 = new THREE.SphereGeometry(120, 10, 10);
-    geometry1.translate(0,0,0);
+    geometry1.translate(0,0,250);
     mesh1 = new THREE.Mesh(geometry1, new THREE.MeshBasicMaterial({color: 0xffff00, wireframe: true}));
     
     var geometry2 = new THREE.SphereGeometry(80, 10, 10);
+    geometry2.translate(150,0,0);
     mesh2 = new THREE.Mesh(geometry2, new THREE.MeshBasicMaterial({color: 0xff0000, wireframe: true}));
-    
-    var geometry2 = new THREE.SphereGeometry(30, 10, 10);
-    mesh3 = new THREE.Mesh(geometry2, new THREE.MeshBasicMaterial({color: 0x0000ff, wireframe: true}));
+   
+    var geometry3 = new THREE.SphereGeometry(30, 10, 10);
+    geometry3.translate(0,10,10);
+    mesh3 = new THREE.Mesh(geometry3, new THREE.MeshBasicMaterial({color: 0x0000ff, wireframe: true}));
     
     scene.add(mesh1);
     scene.add(mesh2);
@@ -33,17 +35,24 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-   
+}
+
+function rotateMeshes(){
+    mesh1.rotation.y += 0.02;
+    mesh2.rotation.x -= 0.1;
+    mesh2.rotation.y -= 0.1;
+    mesh2.rotation.z += 0.02;
+    mesh3.rotation.x += 0.04; 
+    mesh3.rotation.y += 0.02;
 }
 
 function animate() {
     requestAnimationFrame(animate);
-    mesh1.rotation.y += 0.01;
-    mesh2.rotation.y -= 0.05;
-    mesh3.rotation.x += 0.2;
+    rotateMeshes();
     renderer.render(scene, camera);
 }
 
 function main(){
+    init();
     requestAnimationFrame(animate);
 }

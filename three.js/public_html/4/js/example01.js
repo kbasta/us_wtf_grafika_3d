@@ -1,4 +1,3 @@
-// cieniowanie flat
 var scene, camera, renderer;
 
 function init(){
@@ -7,7 +6,12 @@ function init(){
     camera.position.z = 15;
     scene = new THREE.Scene();
     
-    mesh = new THREE.Mesh(new THREE.TorusGeometry(5 , 3, 16, 30), new THREE.MeshPhongMaterial({shading: THREE.FlatShading}));
+    // cieniowanie płaskie
+    //mesh = new THREE.Mesh(new THREE.TorusGeometry(5 , 3, 16, 30), new THREE.MeshPhongMaterial({shading: THREE.FlatShading}));
+    // cieniowanie Gourauda
+    //mesh = new THREE.Mesh(new THREE.TorusGeometry(5 , 3, 16, 30), new THREE.MeshLambertMaterial({shading: THREE.SmoothShading}));
+    // cienieowanie Phonga
+    mesh = new THREE.Mesh(new THREE.TorusGeometry(5 , 3, 16, 30), new THREE.MeshPhongMaterial({shading: THREE.SmoothShading}));
     scene.add(mesh);
     
     var light = new THREE.PointLight(0xff00ff, 1, 500);
@@ -38,7 +42,7 @@ function setTexture(path){
 function rotateMeshes(){
     mesh.rotation.y += 0.02;
     mesh.rotation.z += 0.02;
-    mesh.rotation.x += 0.5;
+    mesh.rotation.x += 0.005;
 }
 
 function animate() {

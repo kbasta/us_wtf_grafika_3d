@@ -35,10 +35,11 @@ function onWindowResize() {
 }
 
 function control(){
-    control = new THREE.TrackballControls(camera);
-    control.rotateSpeed = 5.0;
-    control.zoomSpeed = 1.0;
-    control.panSpeed = 0.1;
+    control = new THREE.OrbitControls(camera);
+//    control = new THREE.TrackballControls(camera);
+//    control.rotateSpeed = 5.0;
+//    control.zoomSpeed = 1.0;
+//    control.panSpeed = 0.1;
 }
 
 function rotateMeshes(){

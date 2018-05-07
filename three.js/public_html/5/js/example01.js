@@ -14,15 +14,18 @@ function init(){
     mesh = new THREE.Mesh(new THREE.TorusGeometry(5 , 3, 16, 30), new THREE.MeshPhongMaterial({shading: THREE.SmoothShading}));
     scene.add(mesh);
     
-    var light = new THREE.PointLight(0xc62ab2, 1, 500);
+    var light = new THREE.DirectionalLight(0xc62ab2, 1, 500);
     light.position.set(10, 10, 45);
     scene.add(light);
     
     control();
     
     renderer = new THREE.WebGLRenderer();
+    //renderer.setClearColor(0x00ff00, 1);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
+    
+    buildGUI();
     
     document.body.appendChild(renderer.domElement);
     window.addEventListener('resize', onWindowResize, false);
@@ -35,7 +38,7 @@ function onWindowResize() {
 }
 
 function control(){
-    control = new THREE.OrbitControls(camera);
+//    control = new THREE.OrbitControls(camera);
 //    control = new THREE.TrackballControls(camera);
 //    control.rotateSpeed = 5.0;
 //    control.zoomSpeed = 1.0;
@@ -51,7 +54,7 @@ function rotateMeshes(){
 function animate() {
     requestAnimationFrame(animate);
     rotateMeshes();
-    control.update();
+    //control.update();
     renderer.render(scene, camera);
 }
 

@@ -11,7 +11,7 @@ function init(){
     // cieniowanie Gourauda
     //mesh = new THREE.Mesh(new THREE.TorusGeometry(5 , 3, 16, 30), new THREE.MeshLambertMaterial({shading: THREE.SmoothShading}));
     // cienieowanie Phonga
-    mesh = new THREE.Mesh(new THREE.TorusGeometry(5 , 3, 16, 30), new THREE.MeshPhongMaterial({shading: THREE.SmoothShading}));
+    mesh = new THREE.Mesh(new THREE.TorusGeometry(5 , 3, 16, 30), new THREE.MeshPhongMaterial({transparent: true, shading: THREE.SmoothShading}));
     scene.add(mesh);
     
     var light = new THREE.DirectionalLight(0xc62ab2, 1, 500);

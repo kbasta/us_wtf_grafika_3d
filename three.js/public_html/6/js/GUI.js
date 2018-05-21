@@ -79,6 +79,18 @@ function buildGUI(){
     var button = new Button();
     object.add(button, "buttonFunction").name("Button");
     
+    var object2 = objectsMenu.addFolder('something');
+    //dodanie checkboxa
+    object2.add(mesh1, 'visible').name('Visible:').onChange(function(value){
+        visibility = true;
+    });
+    //dodanie pelaty koloru
+    var conf1 = new Config();
+    object2.addColor(conf, 'color').name('Color').onChange(function(value){
+        value = value.replace('#', '0x');
+        mesh1.material.color.setHex(value);
+    });
+    
     objectsMenu.open();
     
     var customContainer = document.getElementById('my-gui-container');

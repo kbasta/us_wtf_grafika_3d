@@ -4,6 +4,7 @@ function init(){
     var aspect = window.innerWidth / window.innerHeight;
     camera = new THREE.PerspectiveCamera(70, aspect, 1, 10000);
     camera.position.z = 10;
+    camera.position.x = 2;
     scene = new THREE.Scene();
     
     var light = new THREE.DirectionalLight(0xffffff, 1, 500);

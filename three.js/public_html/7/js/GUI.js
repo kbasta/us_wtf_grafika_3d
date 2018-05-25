@@ -13,9 +13,64 @@ function buildGUI(){
     });
     
     var object1 = objectsMenu.addFolder('Car1');
+    var position1 = object1.addFolder('Position');
     var object2 = objectsMenu.addFolder('Car2');
+    var position2 = object2.addFolder('Position');
     
-    if (mesh1){
+    var PositionXCar1 = function(){
+        this.x = -4;
+    }
+    
+    var positionX = new PositionXCar1();
+    position1.add(positionX, 'x').name('Position x: ').min(-10).max(10).step(0.5).onChange(function(value){
+        mesh1.position.x = value;
+    });
+    
+    var PositionYCar1 = function(){
+        this.y = 0;
+    }
+    
+    var positionY = new PositionYCar1();
+    position1.add(positionY, 'y').name('Position y: ').min(-10).max(10).step(0.5).onChange(function(value){
+        mesh1.position.y = value;
+    });
+    
+    var PositionZCar1 = function(){
+        this.z = 0;
+    }
+    
+    var positionZ = new PositionZCar1();
+    position1.add(positionZ, 'z').name('Position z: ').min(-10).max(10).step(0.5).onChange(function(value){
+        mesh1.position.z = value;
+    });
+    
+    var PositionXCar2 = function(){
+        this.x = 4;
+    }
+    
+    var positionX = new PositionXCar2();
+    position2.add(positionX, 'x').name('Position x: ').min(-10).max(10).step(0.5).onChange(function(value){
+        mesh2.position.x = value;
+    });
+    
+    var PositionYCar2 = function(){
+        this.y = -1;
+    }
+    
+    var positionY = new PositionYCar2();
+    position2.add(positionY, 'y').name('Position y: ').min(-10).max(10).step(0.5).onChange(function(value){
+        mesh2.position.y = value;
+    });
+    
+    var PositionZCar2 = function(){
+        this.z = 0;
+    }
+    
+    var positionZ = new PositionZCar2();
+    position2.add(positionZ, 'z').name('Position z: ').min(-10).max(10).step(0.5).onChange(function(value){
+        mesh2.position.z = value;
+    });
+    
     //dodanie checkboxa
     object1.add(mesh1, 'visible').name('Visible:').onChange(function(value){
         visibility = true;
@@ -82,18 +137,24 @@ function buildGUI(){
             mesh1.children[i].material = newMaterial;
         }
     });
-    }
+
     //przycisk
     var Button = function(){
         this.buttonFunction = function(){
             alert("Kamil Basta");
         }     
     }
-    var button = new Button();
-    objectsMenu.add(button, "buttonFunction").name("Author");
+    var Button1 = function(){
+        this.buttonFunction = function(){
+            alert("Credits to free3d.com");
+        }     
+    }
+ 
+    objectsMenu.add(new Button(), "buttonFunction").name("Author");
+    objectsMenu.add(new Button1(), "buttonFunction").name("Credits");
     
     //**********************
-    if (mesh2){
+
     object2.add(mesh2, 'visible').name('Visible:').onChange(function(value){
         visibility = true;
     });
@@ -159,7 +220,7 @@ function buildGUI(){
             mesh2.children[i].material = newMaterial;
         }
     });
-    }
+
     objectsMenu.open();
     
     var customContainer = document.getElementById('my-gui-container');

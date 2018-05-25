@@ -5,9 +5,9 @@ function buildGUI(){
     
     initCameraScroll(objectsMenu, camera);
     
-    var object1 = objectsMenu.addFolder('Car1');
+    var object1 = objectsMenu.addFolder('Porche 911 GT2');
     var position1 = object1.addFolder('Position');
-    var object2 = objectsMenu.addFolder('Car2');
+    var object2 = objectsMenu.addFolder('AC Cobra 269');
     var position2 = object2.addFolder('Position');
     
     initCarPosition(-4, position1, mesh1, 'x');
@@ -79,7 +79,7 @@ function addTransparency(object, mesh){
 
 function addMaterial(object, mesh){
     var ObjectMaterial = function(){
-        this.material = "";
+        this.material = "Flat";
     }
     var objectMaterial = new ObjectMaterial();
     object.add(objectMaterial, 'material', ["Wireframe", "Flat", "Gouraud" ,"Phong"]).name('Material type:').onChange(function(value){

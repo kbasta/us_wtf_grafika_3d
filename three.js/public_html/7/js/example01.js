@@ -55,12 +55,9 @@ function init(){
     renderer = new THREE.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
-   
-  
-   
     document.body.appendChild(renderer.domElement);
     window.addEventListener('resize', onWindowResize, false);
-    
+    control();
     animate();
 }
 
@@ -71,23 +68,20 @@ function onWindowResize() {
 }
 
 function control(){
-    
+    controls = new THREE.TrackballControls(camera, renderer.domElement);
 }
 
 function rotateMeshes(){
-    //mesh.rotation.y += 0.02;
-    //mesh.rotation.z += 0.02;
     mesh1.rotation.y += 0.001;
     mesh2.rotation.y += 0.001;
 }
 
 function animate() {
+    controls.update();
     requestAnimationFrame(animate);
     rotateMeshes();
-
     renderer.render(scene, camera);
-    //control.update();
-
+    
 }
 
 function main(){
